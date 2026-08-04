@@ -93,7 +93,7 @@ If your caller module attached its own `opentelekomcloud_networking_secgroup_rul
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_opentelekomcloud"></a> [opentelekomcloud](#requirement\_opentelekomcloud) | ~> 1.35 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
@@ -101,7 +101,7 @@ If your caller module attached its own `opentelekomcloud_networking_secgroup_rul
 ## Providers
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="provider_opentelekomcloud"></a> [opentelekomcloud](#provider\_opentelekomcloud) | ~> 1.35 |
 | <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
 
@@ -112,7 +112,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [opentelekomcloud_cbr_policy_v3.backup_policy](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/cbr_policy_v3) | resource |
 | [opentelekomcloud_cbr_vault_v3.backup_vault](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/cbr_vault_v3) | resource |
 | [opentelekomcloud_kms_key_v1.sfs_volume_kms_key](https://registry.terraform.io/providers/opentelekomcloud/opentelekomcloud/latest/docs/resources/kms_key_v1) | resource |
@@ -126,7 +126,10 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
+| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Subnet network id where the SFS volume will be created in. | `string` | n/a | yes |
+| <a name="input_volume_name"></a> [volume\_name](#input\_volume\_name) | Volume name for the SFS Turbo resource. | `string` | n/a | yes |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC id where the SFS volume will be created in. | `string` | n/a | yes |
 | <a name="input_availability_zone"></a> [availability\_zone](#input\_availability\_zone) | Availability zone for the SFS Turbo resource. | `string` | `"eu-de-01"` | no |
 | <a name="input_backup_enabled"></a> [backup\_enabled](#input\_backup\_enabled) | Enable SFS volume backups via CBR Vault. | `bool` | `true` | no |
 | <a name="input_backup_retention_days"></a> [backup\_retention\_days](#input\_backup\_retention\_days) | Retention duration of SFS volume backups in days. | `number` | `13` | no |
@@ -137,14 +140,11 @@ No modules.
 | <a name="input_sg_allowed_cidr"></a> [sg\_allowed\_cidr](#input\_sg\_allowed\_cidr) | CIDR ranges or IPs allowed to mount the SFS share. When set, replaces the default (the mount subnet CIDR); include the mount subnet if hosts there also need access. | `set(string)` | `null` | no |
 | <a name="input_share_type"></a> [share\_type](#input\_share\_type) | Filesystem type of the SFS volume. | `string` | `"STANDARD"` | no |
 | <a name="input_size"></a> [size](#input\_size) | Size of the SFS volume in GB. | `number` | `500` | no |
-| <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Subnet network id where the SFS volume will be created in. | `string` | n/a | yes |
-| <a name="input_volume_name"></a> [volume\_name](#input\_volume\_name) | Volume name for the SFS Turbo resource. | `string` | n/a | yes |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC id where the SFS volume will be created in. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_security_group"></a> [security\_group](#output\_security\_group) | The security group attached to the SFS Turbo share. Reference security\_group.id to attach additional ingress rules from the caller module. |
 | <a name="output_volume"></a> [volume](#output\_volume) | The SFS Turbo share resource. Common attributes: export\_location (NFS mount target), id, size, share\_proto. |
 <!-- END_TF_DOCS -->
