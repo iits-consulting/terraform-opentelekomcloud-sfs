@@ -6,13 +6,13 @@ variable "volume_name" {
 variable "size" {
   type        = number
   default     = 500
-  description = "Size of the SFS volume in GB. (Default: 500)"
+  description = "Size of the SFS volume in GB."
 }
 
 variable "share_type" {
   type        = string
   default     = "STANDARD"
-  description = "Filesystem type of the SFS volume. (Default: STANDARD)"
+  description = "Filesystem type of the SFS volume."
 }
 
 variable "availability_zone" {
@@ -39,7 +39,7 @@ variable "kms_key_id" {
 
 variable "kms_key_create" {
   type        = bool
-  description = "Existing KMS Key ID if one is already created."
+  description = "Whether the module should create a new KMS key for at-rest encryption. Set false and pass kms_key_id to use an existing one."
   default     = true
 }
 
@@ -65,4 +65,10 @@ variable "backup_retention_days" {
   type        = number
   default     = 13
   description = "Retention duration of SFS volume backups in days."
+}
+
+variable "sg_allowed_cidr" {
+  type        = set(string)
+  description = "CIDR ranges or IPs allowed to mount the SFS share. When set, replaces the default (the mount subnet CIDR); include the mount subnet if hosts there also need access."
+  default     = null
 }
