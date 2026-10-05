@@ -80,6 +80,6 @@ resource "opentelekomcloud_sfs_turbo_share_v1" "sfs_volume" {
     create = "30m"
   }
   lifecycle {
-    ignore_changes = [ available_capacity ]
+    ignore_changes = [available_capacity]
   }
 }
