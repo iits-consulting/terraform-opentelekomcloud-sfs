@@ -4,11 +4,13 @@ resource "random_id" "sfs_volume_kms_id" {
 }
 
 resource "opentelekomcloud_kms_key_v1" "sfs_volume_kms_key" {
-  count           = var.kms_key_create ? 1 : 0
-  key_alias       = "${var.volume_name}-SFS-${random_id.sfs_volume_kms_id[0].hex}"
-  key_description = "${var.volume_name} SFS volume encryption key"
-  pending_days    = 7
-  is_enabled      = "true"
+  count             = var.kms_key_create ? 1 : 0
+  key_alias         = "${var.volume_name}-SFS-${random_id.sfs_volume_kms_id[0].hex}"
+  key_description   = "${var.volume_name} SFS volume encryption key"
+  pending_days      = 7
+  is_enabled        = "true"
+  rotation_enabled  = var.kms_key_rotation_interval != null
+  rotation_interval = var.kms_key_rotation_interval
 }
 
 resource "opentelekomcloud_networking_secgroup_v2" "sfs_volume_sg" {

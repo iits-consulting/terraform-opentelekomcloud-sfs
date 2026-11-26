@@ -127,6 +127,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_kms_key_rotation_interval"></a> [kms\_key\_rotation\_interval](#input\_kms\_key\_rotation\_interval) | Rotation interval in days (30-365) for the KMS key created by this module. Setting a value enables automatic key rotation. null turns rotation off, also on a key where it was enabled outside of Terraform. Has no effect if kms\_key\_create is false. (default: null) | `number` | `null` | no |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | Subnet network id where the SFS volume will be created in. | `string` | n/a | yes |
 | <a name="input_volume_name"></a> [volume\_name](#input\_volume\_name) | Volume name for the SFS Turbo resource. | `string` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC id where the SFS volume will be created in. | `string` | n/a | yes |
